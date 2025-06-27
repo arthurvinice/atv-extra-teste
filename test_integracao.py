@@ -4,7 +4,7 @@ import consulta_produto
 
 def test_fluxo_cadastro_e_consulta():
     # Limpa base de dados
-    cadastro_produto.usuarios_db.clear()
+    cadastro_produto.produtos_db.clear()
 
     # Cadastra um usuário
     assert cadastro_produto.cadastrar_produto(1, "João")
