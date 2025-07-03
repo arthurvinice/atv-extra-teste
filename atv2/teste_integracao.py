@@ -4,14 +4,19 @@ from compras import realizar_compra, listar_compras, compras_db
 import unittest
 
 class TestCadastroProduto(unittest.TestCase):
+    
+    # Limpa os "bancos" em memória
+    def setUp(self):
+        produtos_db.clear()
+        usuarios_db.clear()
+        compras_db.clear()
+        print("\nBanco de dados limpo para o teste de integração.\n")
+    
+    def tearDown(self):
+        print("\nTeste de integração concluído.\n")
+
     def test_fluxo_integra_compras(self):
         print("\nIniciando teste de integração do sistema de compras...\n")
-
-        # Limpa os "bancos" em memória
-        def setUp(self):
-            produtos_db.clear()
-            usuarios_db.clear()
-            compras_db.clear() 
 
         # 1. Cadastrar usuários e testar
         cadastrar_usuario("1", "Arthur")
