@@ -38,14 +38,16 @@ class TestCadastroProduto(unittest.TestCase):
         self.assertIn({"produtos": "1", "total": 10.0}, compras_db["1"])
         
         # 4. Tentar compra com produto inválido
-        compra_produto_invalido = realizar_compra("1", "999")
-        self.assertFalse(compra_produto_invalido)
-        self.assertNotIn("999", compras_db["1"])
+        with self.assertRaises(ValueError):
+            realizar_compra("1", "999")
 
         # 5. Verificar compras do usuário 1
-
+        compras_usuario_1 = listar_compras("1")
+        self.assertEqual(len(compras_usuario_1), 1)
 
         # 6. Verificar um usuário que não tem compras
+        compras_usuario_2 = listar_compras("2")
+        self.assertEqual(len(compras_usuario_2), 0)
 
 
 # Executa o teste
